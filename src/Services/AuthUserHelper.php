@@ -36,8 +36,8 @@ class AuthUserHelper
         $user->setEmail($resourceOwner->toArray()['email'])
             ->setUsername($resourceOwner->toArray()['email'])
             ->setEnabled(true)
-            ->setFirstname($resourceOwner->getFirstName())
-            ->setLastname($resourceOwner->getFirstName())
+            ->setFirstname(explode(' ', $resourceOwner->claim('name'))[0] ?? null)
+            ->setLastname(explode(' ', $resourceOwner->claim('name'))[1] ?? null)
             ->setNewsletter(false)
             ->setPermissions($config['roles']);
 
